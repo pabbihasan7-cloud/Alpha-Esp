@@ -1,0 +1,1133 @@
+```html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<titleAlpha Esp</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:'Noto Sans Bengali','Rajdhani',sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(255,193,7,.18),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(255,145,0,.12),transparent 35%),
+        #050505;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    opacity:.35;
+    background-image:
+        linear-gradient(rgba(255,190,40,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,190,40,.04) 1px,transparent 1px);
+    background-size:45px 45px;
+}
+
+/* NAVBAR */
+
+nav{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:20;
+}
+
+.logo{
+    font-family:'Rajdhani',sans-serif;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:3px;
+    color:#ffd54f;
+    text-shadow:0 0 20px rgba(255,193,7,.6);
+}
+
+.logo span{
+    color:#fff;
+}
+
+.nav-btn{
+    text-decoration:none;
+    color:#ffd54f;
+    border:1px solid #b88917;
+    padding:9px 18px;
+    border-radius:8px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:70vh;
+    padding:120px 7% 50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.tag{
+    display:inline-block;
+    padding:7px 16px;
+    border:1px solid #8d6a18;
+    border-radius:50px;
+    color:#ffd54f;
+    font-size:13px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:'Rajdhani',sans-serif;
+    font-size:clamp(65px,12vw,125px);
+    line-height:.82;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#ffd54f;
+    text-shadow:
+        0 0 12px #ffd54f,
+        0 0 45px rgba(255,193,7,.35);
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.8;
+    max-width:650px;
+    margin:auto;
+}
+
+.main-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 30px;
+    border-radius:9px;
+    background:linear-gradient(135deg,#ffe082,#d69e18);
+    color:#080808;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 0 30px rgba(255,193,7,.25);
+}
+
+/* GOLD BOARD */
+
+.board-section{
+    padding:35px 7% 70px;
+}
+
+.board{
+    max-width:1050px;
+    margin:auto;
+    padding:35px;
+    border-radius:20px;
+    border:1px solid #b88b1c;
+    background:
+        linear-gradient(145deg,rgba(255,193,7,.10),rgba(255,255,255,.025));
+    box-shadow:
+        0 0 50px rgba(255,193,7,.10),
+        inset 0 0 35px rgba(255,193,7,.03);
+}
+
+.board-heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.board-heading small{
+    color:#a88b43;
+    letter-spacing:3px;
+}
+
+.board-heading h2{
+    font-family:'Rajdhani',sans-serif;
+    color:#ffd54f;
+    font-size:45px;
+    margin-top:5px;
+}
+
+.matches{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.match{
+    padding:25px 15px;
+    text-align:center;
+    border:1px solid #5d4818;
+    border-radius:14px;
+    background:#090909;
+    transition:.3s;
+}
+
+.match:hover{
+    transform:translateY(-6px);
+    border-color:#ffd54f;
+    box-shadow:0 12px 30px rgba(255,193,7,.15);
+}
+
+.match-number{
+    color:#888;
+    font-size:13px;
+}
+
+.match-time{
+    font-family:'Rajdhani',sans-serif;
+    color:#ffd54f;
+    font-size:42px;
+    font-weight:700;
+    margin:8px 0;
+}
+
+.match-status{
+    color:#aaa;
+    font-size:13px;
+}
+
+/* MODE */
+
+.mode-section{
+    padding:30px 7% 70px;
+    text-align:center;
+}
+
+.section-title{
+    font-family:'Rajdhani',sans-serif;
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.section-title span{
+    color:#ffd54f;
+}
+
+.modes{
+    max-width:600px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.mode{
+    padding:24px;
+    border:1px solid #554317;
+    border-radius:14px;
+    background:#0c0c0c;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.mode:hover{
+    border-color:#ffd54f;
+    transform:translateY(-4px);
+}
+
+.mode.selected{
+    border-color:#ffd54f;
+    background:rgba(255,193,7,.09);
+    box-shadow:0 0 25px rgba(255,193,7,.18);
+}
+
+.mode-icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.mode-name{
+    font-size:23px;
+    font-weight:700;
+    color:#ffd54f;
+}
+
+.mode-desc{
+    color:#888;
+    font-size:13px;
+}
+
+/* REGISTRATION */
+
+.registration-section{
+    padding:20px 7% 80px;
+    text-align:center;
+}
+
+.registration-box{
+    max-width:650px;
+    margin:auto;
+    padding:35px;
+    border:1px solid #b88b1c;
+    border-radius:20px;
+    background:rgba(255,255,255,.025);
+    box-shadow:0 0 45px rgba(255,193,7,.08);
+}
+
+.registration-box h2{
+    color:#ffd54f;
+    font-family:'Rajdhani',sans-serif;
+    font-size:40px;
+}
+
+.registration-box p{
+    color:#999;
+    margin:8px 0 25px;
+}
+
+/* PAYMENT */
+
+.payment-box{
+    text-align:left;
+    padding:20px;
+    border:1px solid #604c1b;
+    border-radius:12px;
+    background:rgba(255,193,7,.05);
+    margin-bottom:22px;
+}
+
+.payment-box h3{
+    color:#ffd54f;
+    margin-bottom:12px;
+}
+
+.payment-number{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px;
+    background:#151515;
+    border-radius:8px;
+}
+
+.number{
+    color:#ffd54f;
+    font-size:20px;
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+}
+
+.copy-btn{
+    padding:9px 14px;
+    border:1px solid #ffd54f;
+    border-radius:7px;
+    background:transparent;
+    color:#ffd54f;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.payment-message{
+    color:#aaa;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:12px;
+}
+
+/* FORMS */
+
+.form{
+    text-align:left;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#ddd;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.form input{
+    width:100%;
+    padding:14px;
+    border-radius:8px;
+    border:1px solid #332b18;
+    outline:none;
+    background:#151515;
+    color:#fff;
+    font-family:inherit;
+}
+
+.form input:focus{
+    border-color:#ffd54f;
+}
+
+.entry-fee{
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #554317;
+    border-radius:8px;
+    color:#ffd54f;
+    background:#111;
+    font-weight:700;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:9px;
+    background:linear-gradient(135deg,#ffe082,#d69e18);
+    color:#080808;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* PROOF */
+
+.proof{
+    max-width:650px;
+    margin:0 auto 80px;
+    padding:30px;
+    text-align:center;
+    border:1px solid #604c1b;
+    border-radius:18px;
+    background:linear-gradient(145deg,rgba(255,193,7,.08),rgba(255,255,255,.02));
+}
+
+.proof h2{
+    color:#ffd54f;
+    margin-bottom:12px;
+}
+
+.proof p{
+    color:#aaa;
+    line-height:1.8;
+}
+
+.whatsapp{
+    display:inline-block;
+    margin-top:18px;
+    padding:13px 25px;
+    border:1px solid #ffd54f;
+    border-radius:9px;
+    color:#ffd54f;
+    text-decoration:none;
+    font-family:'Rajdhani',sans-serif;
+    font-size:21px;
+    font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid #292315;
+    padding:30px 7%;
+    text-align:center;
+    color:#666;
+    font-size:13px;
+}
+
+/* SUCCESS MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.88);
+    backdrop-filter:blur(8px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:100;
+}
+
+.modal.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:100%;
+    max-width:480px;
+    padding:35px;
+    text-align:center;
+    border:1px solid #c89a24;
+    border-radius:18px;
+    background:#0a0a0a;
+    box-shadow:0 0 70px rgba(255,193,7,.18);
+}
+
+.success-icon{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.modal-box h2{
+    color:#ffd54f;
+    line-height:1.5;
+}
+
+.close-btn{
+    margin-top:22px;
+    padding:11px 25px;
+    border:0;
+    border-radius:8px;
+    background:#ffd54f;
+    color:#080808;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .matches{
+        grid-template-columns:1fr;
+    }
+
+    .board{
+        padding:22px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .modes{
+        grid-template-columns:1fr;
+    }
+
+    .registration-box{
+        padding:22px;
+    }
+
+    .payment-number{
+        flex-direction:column;
+        align-items:stretch;
+        text-align:center;
+    }
+
+}
+
+@media(max-width:500px){
+
+    nav{
+        padding:16px 5%;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .nav-btn{
+        padding:7px 12px;
+        font-size:12px;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:60px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        SFF<span> TOURNAMENT</span>
+    </div>
+
+    <a href="#schedule" class="nav-btn">
+        MATCH
+    </a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            FREE FIRE ESPORTS • 2026
+        </div>
+
+        <h1>
+            SFF<br>
+            <span>TOURNAMENT</span>
+        </h1>
+
+        <p>
+            আপনার Solo অথবা Squad নিয়ে Tournament-এ
+            অংশগ্রহণ করুন এবং Champion হওয়ার লড়াইয়ে নামুন।
+        </p>
+
+        <a href="#registration" class="main-btn">
+            ⚡ Registration করুন
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- MATCH SCHEDULE -->
+
+<section class="board-section" id="schedule">
+
+    <div class="board">
+
+        <div class="board-heading">
+
+            <small>UPCOMING BATTLES</small>
+
+            <h2>
+                🏆 MATCH SCHEDULE
+            </h2>
+
+        </div>
+
+
+        <div class="matches">
+
+            <div class="match">
+
+                <div class="match-number">
+                    MATCH 01
+                </div>
+
+                <div class="match-time">
+                    8:00 PM
+                </div>
+
+                <div class="match-status">
+                    Ready for Battle
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="match-number">
+                    MATCH 02
+                </div>
+
+                <div class="match-time">
+                    9:00 PM
+                </div>
+
+                <div class="match-status">
+                    Ready for Battle
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="match-number">
+                    MATCH 03
+                </div>
+
+                <div class="match-time">
+                    10:00 PM
+                </div>
+
+                <div class="match-status">
+                    Grand Battle
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MODE -->
+
+<section class="mode-section">
+
+    <h2 class="section-title">
+        SELECT <span>MODE</span>
+    </h2>
+
+
+    <div class="modes">
+
+        <div
+            class="mode"
+            id="soloMode"
+            onclick="openSolo()">
+
+            <div class="mode-icon">
+                👤
+            </div>
+
+            <div class="mode-name">
+                SOLO
+            </div>
+
+            <div class="mode-desc">
+                Individual Player
+            </div>
+
+        </div>
+
+
+        <div
+            class="mode"
+            id="squadMode"
+            onclick="openSquad()">
+
+            <div class="mode-icon">
+                👥
+            </div>
+
+            <div class="mode-name">
+                SQUAD
+            </div>
+
+            <div class="mode-desc">
+                Team Registration
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REGISTRATION -->
+
+<section class="registration-section" id="registration">
+
+    <div class="registration-box">
+
+        <h2>
+            📝 Registration
+        </h2>
+
+        <p>
+            প্রথমে Solo অথবা Squad নির্বাচন করুন।
+        </p>
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment-box">
+
+            <h3>
+                💳 Payment Method
+            </h3>
+
+            <div class="payment-number">
+
+                <div>
+                    <div style="font-size:12px;color:#888;">
+                        bKash Number
+                    </div>
+
+                    <div class="number" id="bkashNumber">
+                        01827010281
+                    </div>
+                </div>
+
+                <button
+                    class="copy-btn"
+                    onclick="copyNumber()">
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div class="payment-message">
+                স্লট নিতে উপরের বিকাশ নাম্বার টি কপি করে,
+                আপনার বিকাশ অ্যাপ থেকে এন্ট্রি ফি পাঠিয়ে দিন
+            </div>
+
+        </div>
+
+
+        <!-- SOLO FORM -->
+
+        <form
+            class="form"
+            id="soloForm"
+            style="display:none;"
+            onsubmit="submitRegistration(event,'solo')">
+
+            <div class="form-group">
+
+                <label>
+                    1. Player Name (In Game)
+                </label>
+
+                <input
+                    type="text"
+                    id="playerName"
+                    placeholder="Player Name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    2. Contact Number (WhatsApp)
+                </label>
+
+                <input
+                    type="tel"
+                    id="soloContact"
+                    placeholder="WhatsApp Number"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Transaction ID
+                </label>
+
+                <input
+                    type="text"
+                    id="soloTransaction"
+                    placeholder="bKash Transaction ID"
+                    required>
+
+            </div>
+
+
+            <div class="entry-fee">
+                Entry Fee: ৳50
+            </div>
+
+
+            <button class="submit-btn" type="submit">
+                🚀 Solo Registration Submit
+            </button>
+
+        </form>
+
+
+        <!-- SQUAD FORM -->
+
+        <form
+            class="form"
+            id="squadForm"
+            style="display:none;"
+            onsubmit="submitRegistration(event,'squad')">
+
+            <div class="form-group">
+
+                <label>
+                    1. Squad Name
+                </label>
+
+                <input
+                    type="text"
+                    id="squadName"
+                    placeholder="Squad Name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    2. Team Leader Name (In Game)
+                </label>
+
+                <input
+                    type="text"
+                    id="leaderName"
+                    placeholder="Team Leader Name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    3. Contact Number (WhatsApp)
+                </label>
+
+                <input
+                    type="tel"
+                    id="squadContact"
+                    placeholder="WhatsApp Number"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    4. Entry Fee
+                </label>
+
+                <div class="entry-fee">
+                    ৳50
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Transaction ID
+                </label>
+
+                <input
+                    type="text"
+                    id="squadTransaction"
+                    placeholder="bKash Transaction ID"
+                    required>
+
+            </div>
+
+
+            <button class="submit-btn" type="submit">
+                🚀 Squad Registration Submit
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- PROOF -->
+
+<section class="proof">
+
+    <h2>
+        📱 Registration Proof
+    </h2>
+
+    <p>
+        আপনার রেজিষ্ট্রেশন এর স্ক্রিনশট টি এই নাম্বারে
+        পাঠিয়ে দিন,ধন্যবাদ 🌸
+    </p>
+
+    <a
+        class="whatsapp"
+        href="https://wa.me/8801827010281"
+        target="_blank">
+        WhatsApp: 01827010281
+    </a>
+
+</section>
+
+
+<!-- SUCCESS -->
+
+<div class="modal" id="successModal">
+
+    <div class="modal-box">
+
+        <div class="success-icon">
+            🌸
+        </div>
+
+        <h2>
+            আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে
+        </h2>
+
+        <button
+            class="close-btn"
+            onclick="closeSuccess()">
+            ঠিক আছে
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 SFF TOURNAMENT • All Rights Reserved
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MODE SELECTION
+========================= */
+
+function openSolo(){
+
+    document
+        .getElementById("soloMode")
+        .classList.add("selected");
+
+    document
+        .getElementById("squadMode")
+        .classList.remove("selected");
+
+    document
+        .getElementById("soloForm")
+        .style.display = "block";
+
+    document
+        .getElementById("squadForm")
+        .style.display = "none";
+
+    document
+        .getElementById("registration")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function openSquad(){
+
+    document
+        .getElementById("squadMode")
+        .classList.add("selected");
+
+    document
+        .getElementById("soloMode")
+        .classList.remove("selected");
+
+    document
+        .getElementById("squadForm")
+        .style.display = "block";
+
+    document
+        .getElementById("soloForm")
+        .style.display = "none";
+
+    document
+        .getElementById("registration")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   COPY BKASH NUMBER
+========================= */
+
+function copyNumber(){
+
+    const number =
+        document.getElementById("bkashNumber").innerText;
+
+    navigator.clipboard.writeText(number);
+
+    alert("bKash Number কপি হয়েছে ✅");
+
+}
+
+
+/* =========================
+   REGISTRATION
+========================= */
+
+function submitRegistration(event,type){
+
+    event.preventDefault();
+
+    /*
+       এখানে বর্তমানে form submission
+       সফল হলে success message দেখানো হচ্ছে।
+
+       Real payment verification/database
+       পরে server বা official payment gateway
+       দিয়ে যুক্ত করতে হবে।
+    */
+
+    document
+        .getElementById("successModal")
+        .classList.add("show");
+
+    event.target.reset();
+
+}
+
+
+/* =========================
+   CLOSE SUCCESS
+========================= */
+
+function closeSuccess(){
+
+    document
+        .getElementById("successModal")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>
+```
