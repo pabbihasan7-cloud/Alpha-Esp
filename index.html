@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alpha Esp</title>
+<title>Alpha ESP</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
@@ -33,7 +32,7 @@ body::before{
     inset:0;
     z-index:-5;
     background:
-        radial-gradient(circle at 15% 15%,rgba(255,0,0,.13),transparent 30%),
+        radial-gradient(circle at 15% 15%,rgba(255,0,0,.14),transparent 30%),
         radial-gradient(circle at 85% 80%,rgba(255,0,0,.10),transparent 35%),
         #050505;
 }
@@ -42,12 +41,14 @@ body::before{
     position:fixed;
     inset:0;
     z-index:-4;
-    opacity:.30;
+    opacity:.25;
     background-image:
         linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
     background-size:45px 45px;
 }
+
+/* Floating particles */
 
 .particle{
     position:fixed;
@@ -66,8 +67,15 @@ body::before{
         transform:translateY(110vh) translateX(0);
         opacity:0;
     }
-    15%{opacity:1;}
-    85%{opacity:1;}
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
     100%{
         transform:translateY(-10vh) translateX(100px);
         opacity:0;
@@ -93,12 +101,11 @@ nav{
     font-size:30px;
     font-weight:700;
     letter-spacing:3px;
-    color:#fff;
-    text-shadow:0 0 15px rgba(255,0,0,.4);
 }
 
 .logo span{
     color:#ff2020;
+    text-shadow:0 0 15px rgba(255,0,0,.5);
 }
 
 .nav-btn{
@@ -147,6 +154,7 @@ nav{
     0%,100%{
         box-shadow:0 0 0 rgba(255,0,0,0);
     }
+
     50%{
         box-shadow:0 0 25px rgba(255,0,0,.25);
     }
@@ -206,9 +214,7 @@ nav{
     border:1px solid #8e1717;
     background:
         linear-gradient(145deg,rgba(255,0,0,.10),rgba(255,255,255,.025));
-    box-shadow:
-        0 0 50px rgba(255,0,0,.10),
-        inset 0 0 35px rgba(255,0,0,.03);
+    box-shadow:0 0 50px rgba(255,0,0,.10);
     animation:boardGlow 4s ease-in-out infinite;
 }
 
@@ -216,6 +222,7 @@ nav{
     0%,100%{
         box-shadow:0 0 35px rgba(255,0,0,.08);
     }
+
     50%{
         box-shadow:0 0 55px rgba(255,0,0,.20);
     }
@@ -337,7 +344,6 @@ nav{
 .mode-name{
     font-size:23px;
     font-weight:700;
-    color:#fff;
 }
 
 .mode-desc{
@@ -374,7 +380,6 @@ nav{
     gap:15px;
 }
 
-/* hidden fee option */
 .fee{
     display:none;
     padding:18px;
@@ -395,6 +400,7 @@ nav{
         opacity:0;
         transform:translateY(25px) scale(.95);
     }
+
     to{
         opacity:1;
         transform:translateY(0) scale(1);
@@ -437,11 +443,12 @@ nav{
     padding:35px;
     border:1px solid #8b1b1b;
     border-radius:20px;
-    background:linear-gradient(
-        145deg,
-        rgba(255,0,0,.08),
-        rgba(255,255,255,.025)
-    );
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,0,0,.08),
+            rgba(255,255,255,.025)
+        );
     box-shadow:0 0 45px rgba(255,0,0,.08);
 }
 
@@ -454,6 +461,29 @@ nav{
 .registration-box > p{
     color:#888;
     margin:8px 0 25px;
+}
+
+/* SCREENSHOT TITLE */
+
+.screenshot-title{
+    text-align:center;
+    color:#ff3030;
+    font-size:22px;
+    font-weight:700;
+    padding:14px;
+    margin-bottom:8px;
+    border:1px solid #6b1919;
+    border-radius:10px;
+    background:rgba(255,0,0,.06);
+    box-shadow:0 0 20px rgba(255,0,0,.08);
+}
+
+.proof-note{
+    text-align:center;
+    color:#888;
+    font-size:13px;
+    line-height:1.8;
+    margin-bottom:22px;
 }
 
 /* PAYMENT */
@@ -512,7 +542,7 @@ nav{
     margin-top:12px;
 }
 
-/* FORMS */
+/* FORM */
 
 .form{
     text-align:left;
@@ -525,6 +555,7 @@ nav{
         opacity:0;
         transform:translateY(15px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -593,7 +624,95 @@ nav{
     box-shadow:0 10px 30px rgba(255,0,0,.35);
 }
 
-/* PROOF */
+/* REGISTRATION PROOF */
+
+.registration-proof{
+    display:none;
+    margin-top:25px;
+    padding:22px;
+    border:1px solid #ff2525;
+    border-radius:15px;
+    background:#080808;
+    box-shadow:0 0 30px rgba(255,0,0,.15);
+    animation:proofShow .6s ease;
+}
+
+.registration-proof.show{
+    display:block;
+}
+
+@keyframes proofShow{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.proof-heading{
+    text-align:center;
+    color:#ff3030;
+    font-family:'Rajdhani',sans-serif;
+    font-size:25px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.proof-status{
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    padding:12px;
+    margin-bottom:18px;
+    border-radius:9px;
+    background:rgba(255,0,0,.08);
+}
+
+.proof-details{
+    border:1px solid #321414;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.proof-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 14px;
+    border-bottom:1px solid #251010;
+    font-size:14px;
+}
+
+.proof-row:last-child{
+    border-bottom:0;
+}
+
+.proof-row span{
+    color:#888;
+}
+
+.proof-row strong{
+    color:#fff;
+    text-align:right;
+    word-break:break-word;
+}
+
+.screenshot-message{
+    text-align:center;
+    color:#aaa;
+    line-height:1.8;
+    font-size:13px;
+    margin-top:18px;
+    padding-top:15px;
+    border-top:1px solid #291212;
+}
+
+/* WHATSAPP PROOF */
 
 .proof{
     max-width:650px;
@@ -602,11 +721,12 @@ nav{
     text-align:center;
     border:1px solid #421616;
     border-radius:18px;
-    background:linear-gradient(
-        145deg,
-        rgba(255,0,0,.07),
-        rgba(255,255,255,.02)
-    );
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,0,0,.07),
+            rgba(255,255,255,.02)
+        );
 }
 
 .proof h2{
@@ -639,70 +759,6 @@ nav{
     transform:translateY(-3px);
 }
 
-/* SUCCESS MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.88);
-    backdrop-filter:blur(8px);
-    opacity:0;
-    visibility:hidden;
-    transition:.3s;
-    z-index:100;
-}
-
-.modal.show{
-    opacity:1;
-    visibility:visible;
-}
-
-.modal-box{
-    width:100%;
-    max-width:480px;
-    padding:35px;
-    text-align:center;
-    border:1px solid #ff2525;
-    border-radius:18px;
-    background:#090909;
-    box-shadow:0 0 70px rgba(255,0,0,.20);
-    transform:translateY(25px) scale(.95);
-    transition:.35s;
-}
-
-.modal.show .modal-box{
-    transform:translateY(0) scale(1);
-}
-
-.success-icon{
-    font-size:60px;
-    margin-bottom:10px;
-}
-
-.modal-box h2{
-    color:#fff;
-    line-height:1.6;
-}
-
-.modal-box h2 span{
-    color:#ff3030;
-}
-
-.close-btn{
-    margin-top:22px;
-    padding:11px 25px;
-    border:0;
-    border-radius:8px;
-    background:#ff2525;
-    color:#fff;
-    font-weight:700;
-    cursor:pointer;
-}
-
 /* FOOTER */
 
 footer{
@@ -713,13 +769,14 @@ footer{
     font-size:13px;
 }
 
-/* FADE */
+/* ANIMATION */
 
 @keyframes fadeUp{
     from{
         opacity:0;
         transform:translateY(30px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -737,7 +794,6 @@ footer{
     .board{
         padding:22px;
     }
-
 }
 
 @media(max-width:600px){
@@ -757,13 +813,11 @@ footer{
     .payment-number{
         flex-direction:column;
         align-items:stretch;
-        text-align:center;
     }
 
     .copy-btn{
         width:100%;
     }
-
 }
 
 @media(max-width:500px){
@@ -798,6 +852,14 @@ footer{
         padding-right:5%;
     }
 
+    .proof-row{
+        flex-direction:column;
+        gap:4px;
+    }
+
+    .proof-row strong{
+        text-align:left;
+    }
 }
 </style>
 </head>
@@ -994,7 +1056,7 @@ footer{
 
         <div class="fees">
 
-            <!-- SOLO FEES -->
+            <!-- SOLO -->
 
             <div
                 class="fee solo-fee"
@@ -1026,7 +1088,7 @@ footer{
 
             </div>
 
-            <!-- SQUAD FEES -->
+            <!-- SQUAD -->
 
             <div
                 class="fee squad-fee"
@@ -1090,6 +1152,17 @@ footer{
             আপনার তথ্য সঠিকভাবে পূরণ করুন।
         </p>
 
+        <!-- SCREENSHOT INSTRUCTION -->
+
+        <div class="screenshot-title">
+            📸 এই রেজিষ্ট্রেশন টির স্ক্রিনশট নিন
+        </div>
+
+        <div class="proof-note">
+            রেজিষ্ট্রেশন সম্পন্ন হওয়ার পর নিচের
+            সম্পূর্ণ তথ্যসহ এই অংশটির একটি Screenshot নিয়ে রাখুন।
+        </div>
+
         <!-- PAYMENT -->
 
         <div class="payment-box">
@@ -1109,7 +1182,9 @@ footer{
                     <div
                         class="number"
                         id="bkashNumber">
+
                         01827010281
+
                     </div>
 
                 </div>
@@ -1311,11 +1386,98 @@ footer{
 
         </form>
 
+        <!-- REGISTRATION PROOF -->
+
+        <div
+            id="registrationProof"
+            class="registration-proof">
+
+            <div class="proof-heading">
+                📸 REGISTRATION PROOF
+            </div>
+
+            <div class="proof-status">
+                আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে 🌸
+            </div>
+
+            <div class="proof-details">
+
+                <div class="proof-row">
+
+                    <span>
+                        Mode
+                    </span>
+
+                    <strong id="proofMode">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="proof-row">
+
+                    <span>
+                        Entry Fee
+                    </span>
+
+                    <strong id="proofFee">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="proof-row">
+
+                    <span>
+                        Name
+                    </span>
+
+                    <strong id="proofName">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="proof-row">
+
+                    <span>
+                        Contact
+                    </span>
+
+                    <strong id="proofContact">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="proof-row">
+
+                    <span>
+                        Transaction ID
+                    </span>
+
+                    <strong id="proofTransaction">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="screenshot-message">
+
+                📸 এই রেজিষ্ট্রেশন টির স্ক্রিনশট নিন
+                এবং প্রমাণ হিসেবে WhatsApp-এ পাঠিয়ে দিন।
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
 
-<!-- REGISTRATION PROOF -->
+<!-- WHATSAPP PROOF -->
 
 <section class="proof">
 
@@ -1325,7 +1487,7 @@ footer{
 
     <p>
         আপনার রেজিষ্ট্রেশন এর স্ক্রিনশট টি এই নাম্বারে
-        পাঠিয়ে দিন,ধন্যবাদ 🌸
+        পাঠিয়ে দিন, ধন্যবাদ 🌸
     </p>
 
     <a
@@ -1338,34 +1500,6 @@ footer{
     </a>
 
 </section>
-
-<!-- SUCCESS MODAL -->
-
-<div
-    class="modal"
-    id="successModal">
-
-    <div class="modal-box">
-
-        <div class="success-icon">
-            🌸
-        </div>
-
-        <h2>
-            আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে
-        </h2>
-
-        <button
-            class="close-btn"
-            onclick="closeSuccess()">
-
-            ঠিক আছে
-
-        </button>
-
-    </div>
-
-</div>
 
 <!-- FOOTER -->
 
@@ -1389,30 +1523,21 @@ function selectMode(mode){
 
     selectedMode = mode;
 
-    /* Reset previous fee */
+    /* Reset fee */
 
     selectedFee = "";
 
     document
         .querySelectorAll(".fee")
         .forEach(function(fee){
+
             fee.classList.remove("selected");
             fee.classList.remove("show");
+
         });
 
 
-    /* Mode buttons */
-
-    document
-        .getElementById("soloMode")
-        .classList.remove("selected");
-
-    document
-        .getElementById("squadMode")
-        .classList.remove("selected");
-
-
-    /* Forms hide */
+    /* Reset forms */
 
     document
         .getElementById("soloForm")
@@ -1423,7 +1548,25 @@ function selectMode(mode){
         .style.display = "none";
 
 
-    /* Select mode */
+    /* Reset proof */
+
+    document
+        .getElementById("registrationProof")
+        .classList.remove("show");
+
+
+    /* Remove selected mode */
+
+    document
+        .getElementById("soloMode")
+        .classList.remove("selected");
+
+    document
+        .getElementById("squadMode")
+        .classList.remove("selected");
+
+
+    /* SOLO */
 
     if(mode === "solo"){
 
@@ -1431,8 +1574,6 @@ function selectMode(mode){
             .getElementById("soloMode")
             .classList.add("selected");
 
-
-        /* Show only Solo fees */
 
         document
             .getElementById("fee10")
@@ -1458,14 +1599,14 @@ function selectMode(mode){
     }
 
 
+    /* SQUAD */
+
     if(mode === "squad"){
 
         document
             .getElementById("squadMode")
             .classList.add("selected");
 
-
-        /* Show only Squad fees */
 
         document
             .getElementById("fee20squad")
@@ -1491,7 +1632,7 @@ function selectMode(mode){
     }
 
 
-    /* Reset fee display */
+    /* Reset fee */
 
     document
         .getElementById("feeAmount")
@@ -1502,10 +1643,7 @@ function selectMode(mode){
         .innerText = "-";
 
 
-    /*
-       Mode select করার পর
-       Entry Fee section-এ smooth slide
-    */
+    /* Smooth slide to fee */
 
     setTimeout(function(){
 
@@ -1522,7 +1660,7 @@ function selectMode(mode){
 
 
 /* =========================
-   ENTRY FEE SELECTION
+   ENTRY FEE
 ========================= */
 
 function selectFee(fee){
@@ -1534,29 +1672,24 @@ function selectFee(fee){
         );
 
         return;
-
     }
 
-
-    /*
-       Selected fee save
-    */
 
     selectedFee = fee;
 
 
-    /* Remove previous selected */
+    /* Remove selected */
 
     document
         .querySelectorAll(".fee")
         .forEach(function(item){
+
             item.classList.remove("selected");
+
         });
 
 
-    /*
-       Correct fee highlight
-    */
+    /* SOLO */
 
     if(selectedMode === "solo"){
 
@@ -1579,6 +1712,8 @@ function selectFee(fee){
     }
 
 
+    /* SQUAD */
+
     if(selectedMode === "squad"){
 
         if(fee === 20){
@@ -1600,13 +1735,12 @@ function selectFee(fee){
     }
 
 
-    /* Update registration fee */
+    /* Update fee */
 
     document
         .getElementById("feeAmount")
         .innerText =
         fee + "৳";
-
 
     document
         .getElementById("squadFeeAmount")
@@ -1614,10 +1748,7 @@ function selectFee(fee){
         fee + "৳";
 
 
-    /*
-       Fee select করার পর
-       Registration section-এ smooth slide
-    */
+    /* Smooth slide to registration */
 
     setTimeout(function(){
 
@@ -1629,7 +1760,7 @@ function selectFee(fee){
             });
 
 
-        /* Show correct form */
+        /* Show form */
 
         if(selectedMode === "solo"){
 
@@ -1637,22 +1768,13 @@ function selectFee(fee){
                 .getElementById("soloForm")
                 .style.display = "block";
 
-            document
-                .getElementById("squadForm")
-                .style.display = "none";
-
         }
-
 
         if(selectedMode === "squad"){
 
             document
                 .getElementById("squadForm")
                 .style.display = "block";
-
-            document
-                .getElementById("soloForm")
-                .style.display = "none";
 
         }
 
@@ -1662,7 +1784,7 @@ function selectFee(fee){
 
 
 /* =========================
-   COPY BKASH NUMBER
+   COPY BKASH
 ========================= */
 
 function copyNumber(){
@@ -1673,29 +1795,33 @@ function copyNumber(){
         .innerText;
 
 
-    navigator.clipboard
-        .writeText(number)
-        .then(function(){
+    if(navigator.clipboard){
 
-            alert(
-                "bKash Number কপি হয়েছে ✅\n" +
-                number
-            );
+        navigator.clipboard
+            .writeText(number)
+            .then(function(){
 
-        })
-        .catch(function(){
+                alert(
+                    "bKash Number কপি হয়েছে ✅\n" +
+                    number
+                );
 
-            alert(
-                "Number: " + number
-            );
+            });
 
-        });
+    }else{
+
+        alert(
+            "bKash Number: " +
+            number
+        );
+
+    }
 
 }
 
 
 /* =========================
-   REGISTRATION SUBMIT
+   SUBMIT REGISTRATION
 ========================= */
 
 function submitRegistration(event,type){
@@ -1725,54 +1851,128 @@ function submitRegistration(event,type){
     }
 
 
-    /*
-       Registration successful
-    */
+    const form = event.target;
+
+    const inputs =
+        form.querySelectorAll("input");
+
+
+    let name = "";
+    let contact = "";
+    let transaction = "";
+
+
+    /* SOLO */
+
+    if(type === "solo"){
+
+        name =
+            inputs[0].value;
+
+        contact =
+            inputs[1].value;
+
+        transaction =
+            inputs[2].value;
+
+    }
+
+
+    /* SQUAD */
+
+    if(type === "squad"){
+
+        name =
+            inputs[1].value;
+
+        contact =
+            inputs[2].value;
+
+        transaction =
+            inputs[3].value;
+
+    }
+
+
+    /* Add details to proof */
 
     document
-        .getElementById("successModal")
+        .getElementById("proofMode")
+        .innerText =
+        selectedMode.toUpperCase();
+
+
+    document
+        .getElementById("proofFee")
+        .innerText =
+        selectedFee + "৳";
+
+
+    document
+        .getElementById("proofName")
+        .innerText =
+        name;
+
+
+    document
+        .getElementById("proofContact")
+        .innerText =
+        contact;
+
+
+    document
+        .getElementById("proofTransaction")
+        .innerText =
+        transaction;
+
+
+    /* Show proof */
+
+    document
+        .getElementById("registrationProof")
         .classList.add("show");
 
 
-    event.target.reset();
-
-}
-
-
-/* =========================
-   CLOSE SUCCESS MODAL
-========================= */
-
-function closeSuccess(){
+    /* Hide forms */
 
     document
-        .getElementById("successModal")
-        .classList.remove("show");
+        .getElementById("soloForm")
+        .style.display = "none";
+
+    document
+        .getElementById("squadForm")
+        .style.display = "none";
+
+
+    /* Smooth scroll to proof */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("registrationProof")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+    },300);
 
 }
 
 
 /* =========================
-   OUTSIDE CLICK
+   RESET AFTER PAGE RELOAD
 ========================= */
 
-document
-    .getElementById("successModal")
-    .addEventListener(
-        "click",
-        function(event){
+window.addEventListener("load",function(){
 
-            if(event.target === this){
+    document
+        .getElementById("registrationProof")
+        .classList.remove("show");
 
-                closeSuccess();
-
-            }
-
-        }
-    );
+});
 
 </script>
 
 </body>
 </html>
-```
