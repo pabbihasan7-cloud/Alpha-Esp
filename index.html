@@ -370,17 +370,35 @@ nav{
 
 .fees{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
 
+/* hidden fee option */
 .fee{
+    display:none;
     padding:18px;
     border:1px solid #4b1818;
     border-radius:12px;
     background:#090909;
     cursor:pointer;
     transition:.3s;
+}
+
+.fee.show{
+    display:block;
+    animation:feeSlide .45s ease forwards;
+}
+
+@keyframes feeSlide{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .fee:hover{
@@ -729,7 +747,7 @@ footer{
     }
 
     .fees{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
     }
 
     .registration-box{
@@ -966,7 +984,7 @@ footer{
 
 <!-- ENTRY FEE -->
 
-<section class="fee-section">
+<section class="fee-section" id="feeSection">
 
     <div class="fee-box">
 
@@ -976,8 +994,10 @@ footer{
 
         <div class="fees">
 
+            <!-- SOLO FEES -->
+
             <div
-                class="fee"
+                class="fee solo-fee"
                 id="fee10"
                 onclick="selectFee(10)">
 
@@ -992,8 +1012,25 @@ footer{
             </div>
 
             <div
-                class="fee"
-                id="fee20"
+                class="fee solo-fee"
+                id="fee20solo"
+                onclick="selectFee(20)">
+
+                <div class="fee-price">
+                    20৳
+                </div>
+
+                <div class="fee-text">
+                    Entry Fee
+                </div>
+
+            </div>
+
+            <!-- SQUAD FEES -->
+
+            <div
+                class="fee squad-fee"
+                id="fee20squad"
                 onclick="selectFee(20)">
 
                 <div class="fee-price">
@@ -1007,7 +1044,7 @@ footer{
             </div>
 
             <div
-                class="fee"
+                class="fee squad-fee"
                 id="fee50"
                 onclick="selectFee(50)">
 
@@ -1020,6 +1057,18 @@ footer{
                 </div>
 
             </div>
+
+        </div>
+
+        <div
+            id="feeHint"
+            style="
+                color:#777;
+                font-size:13px;
+                margin-top:18px;
+            ">
+
+            প্রথমে Solo অথবা Squad নির্বাচন করুন।
 
         </div>
 
@@ -1038,7 +1087,7 @@ footer{
         </h2>
 
         <p>
-            Mode এবং Entry Fee নির্বাচন করুন।
+            আপনার তথ্য সঠিকভাবে পূরণ করুন।
         </p>
 
         <!-- PAYMENT -->
@@ -1068,7 +1117,9 @@ footer{
                 <button
                     class="copy-btn"
                     onclick="copyNumber()">
+
                     📋 Copy Number
+
                 </button>
 
             </div>
@@ -1087,7 +1138,6 @@ footer{
         <div
             id="selectedModeText"
             style="
-                display:none;
                 text-align:left;
                 padding:12px;
                 margin-bottom:15px;
@@ -1096,17 +1146,24 @@ footer{
                 background:#101010;
                 color:#aaa;
             ">
+
+            Selected Mode:
+            <strong style="color:#ff3030;">
+                -
+            </strong>
+
         </div>
 
         <!-- SELECTED FEE -->
 
         <div
             id="selectedFeeText"
-            class="selected-fee"
-            style="display:none;">
+            class="selected-fee">
 
             Selected Entry Fee:
-            <strong id="feeAmount">10৳</strong>
+            <strong id="feeAmount">
+                -
+            </strong>
 
         </div>
 
@@ -1147,7 +1204,7 @@ footer{
             <div class="form-group">
 
                 <label>
-                    Transaction ID
+                    3. Transaction ID
                 </label>
 
                 <input
@@ -1220,13 +1277,11 @@ footer{
                     4. Entry Fee
                 </label>
 
-                <div
-                    class="selected-fee"
-                    style="margin-bottom:0;">
+                <div class="selected-fee">
 
                     Selected:
                     <strong id="squadFeeAmount">
-                        10৳
+                        -
                     </strong>
 
                 </div>
@@ -1236,7 +1291,7 @@ footer{
             <div class="form-group">
 
                 <label>
-                    Transaction ID
+                    5. Transaction ID
                 </label>
 
                 <input
@@ -1255,20 +1310,6 @@ footer{
             </button>
 
         </form>
-
-        <div
-            id="chooseMessage"
-            style="
-                padding:18px;
-                border:1px dashed #401515;
-                border-radius:10px;
-                color:#777;
-                margin-top:10px;
-            ">
-
-            👆 উপরে Solo অথবা Squad এবং Entry Fee নির্বাচন করুন
-
-        </div>
 
     </div>
 
@@ -1336,140 +1377,293 @@ footer{
 
 <script>
 
-/* VARIABLES */
-
 let selectedMode = "";
 let selectedFee = "";
 
 
-/* MODE SELECTION */
+/* =========================
+   MODE SELECTION
+========================= */
 
 function selectMode(mode){
 
     selectedMode = mode;
 
-    const solo =
-        document.getElementById("soloMode");
+    /* Reset previous fee */
 
-    const squad =
-        document.getElementById("squadMode");
+    selectedFee = "";
 
-    const soloForm =
-        document.getElementById("soloForm");
+    document
+        .querySelectorAll(".fee")
+        .forEach(function(fee){
+            fee.classList.remove("selected");
+            fee.classList.remove("show");
+        });
 
-    const squadForm =
-        document.getElementById("squadForm");
 
-    const modeText =
-        document.getElementById("selectedModeText");
+    /* Mode buttons */
 
-    const chooseMessage =
-        document.getElementById("chooseMessage");
+    document
+        .getElementById("soloMode")
+        .classList.remove("selected");
 
+    document
+        .getElementById("squadMode")
+        .classList.remove("selected");
+
+
+    /* Forms hide */
+
+    document
+        .getElementById("soloForm")
+        .style.display = "none";
+
+    document
+        .getElementById("squadForm")
+        .style.display = "none";
+
+
+    /* Select mode */
 
     if(mode === "solo"){
 
-        solo.classList.add("selected");
-        squad.classList.remove("selected");
+        document
+            .getElementById("soloMode")
+            .classList.add("selected");
 
-        soloForm.style.display = "block";
-        squadForm.style.display = "none";
 
-        modeText.style.display = "block";
+        /* Show only Solo fees */
 
-        modeText.innerHTML =
-            "🎮 Selected Mode: <strong style='color:#ff3030;'>SOLO</strong>";
+        document
+            .getElementById("fee10")
+            .classList.add("show");
 
-        chooseMessage.style.display = "none";
+        document
+            .getElementById("fee20solo")
+            .classList.add("show");
+
+
+        document
+            .getElementById("feeHint")
+            .innerText =
+            "Solo Entry Fee নির্বাচন করুন।";
+
+
+        document
+            .getElementById("selectedModeText")
+            .innerHTML =
+            "Selected Mode: " +
+            "<strong style='color:#ff3030;'>SOLO</strong>";
 
     }
 
 
     if(mode === "squad"){
 
-        squad.classList.add("selected");
-        solo.classList.remove("selected");
+        document
+            .getElementById("squadMode")
+            .classList.add("selected");
 
-        squadForm.style.display = "block";
-        soloForm.style.display = "none";
 
-        modeText.style.display = "block";
+        /* Show only Squad fees */
 
-        modeText.innerHTML =
-            "🎮 Selected Mode: <strong style='color:#ff3030;'>SQUAD</strong>";
+        document
+            .getElementById("fee20squad")
+            .classList.add("show");
 
-        chooseMessage.style.display = "none";
+        document
+            .getElementById("fee50")
+            .classList.add("show");
+
+
+        document
+            .getElementById("feeHint")
+            .innerText =
+            "Squad Entry Fee নির্বাচন করুন।";
+
+
+        document
+            .getElementById("selectedModeText")
+            .innerHTML =
+            "Selected Mode: " +
+            "<strong style='color:#ff3030;'>SQUAD</strong>";
 
     }
 
-    updateFeeDisplay();
+
+    /* Reset fee display */
 
     document
-        .getElementById("registration")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+        .getElementById("feeAmount")
+        .innerText = "-";
+
+    document
+        .getElementById("squadFeeAmount")
+        .innerText = "-";
+
+
+    /*
+       Mode select করার পর
+       Entry Fee section-এ smooth slide
+    */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("feeSection")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
+
+    },200);
 
 }
 
 
-/* ENTRY FEE SELECTION */
+/* =========================
+   ENTRY FEE SELECTION
+========================= */
 
 function selectFee(fee){
 
+    if(selectedMode === ""){
+
+        alert(
+            "দয়া করে আগে Solo অথবা Squad নির্বাচন করুন।"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Selected fee save
+    */
+
     selectedFee = fee;
+
+
+    /* Remove previous selected */
 
     document
         .querySelectorAll(".fee")
-        .forEach(item=>{
+        .forEach(function(item){
             item.classList.remove("selected");
         });
 
 
-    document
-        .getElementById("fee" + fee)
-        .classList.add("selected");
+    /*
+       Correct fee highlight
+    */
 
+    if(selectedMode === "solo"){
 
-    updateFeeDisplay();
+        if(fee === 10){
 
+            document
+                .getElementById("fee10")
+                .classList.add("selected");
 
-    document
-        .getElementById("registration")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+        }
 
-}
+        if(fee === 20){
 
+            document
+                .getElementById("fee20solo")
+                .classList.add("selected");
 
-/* UPDATE FEE */
+        }
 
-function updateFeeDisplay(){
-
-    if(selectedFee === ""){
-        return;
     }
 
 
-    document
-        .getElementById("selectedFeeText")
-        .style.display = "block";
+    if(selectedMode === "squad"){
 
+        if(fee === 20){
+
+            document
+                .getElementById("fee20squad")
+                .classList.add("selected");
+
+        }
+
+        if(fee === 50){
+
+            document
+                .getElementById("fee50")
+                .classList.add("selected");
+
+        }
+
+    }
+
+
+    /* Update registration fee */
 
     document
         .getElementById("feeAmount")
-        .innerText = selectedFee + "৳";
+        .innerText =
+        fee + "৳";
 
 
     document
         .getElementById("squadFeeAmount")
-        .innerText = selectedFee + "৳";
+        .innerText =
+        fee + "৳";
+
+
+    /*
+       Fee select করার পর
+       Registration section-এ smooth slide
+    */
+
+    setTimeout(function(){
+
+        document
+            .getElementById("registration")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+
+        /* Show correct form */
+
+        if(selectedMode === "solo"){
+
+            document
+                .getElementById("soloForm")
+                .style.display = "block";
+
+            document
+                .getElementById("squadForm")
+                .style.display = "none";
+
+        }
+
+
+        if(selectedMode === "squad"){
+
+            document
+                .getElementById("squadForm")
+                .style.display = "block";
+
+            document
+                .getElementById("soloForm")
+                .style.display = "none";
+
+        }
+
+    },250);
 
 }
 
 
-/* COPY BKASH */
+/* =========================
+   COPY BKASH NUMBER
+========================= */
 
 function copyNumber(){
 
@@ -1500,7 +1694,9 @@ function copyNumber(){
 }
 
 
-/* SUBMIT */
+/* =========================
+   REGISTRATION SUBMIT
+========================= */
 
 function submitRegistration(event,type){
 
@@ -1529,6 +1725,10 @@ function submitRegistration(event,type){
     }
 
 
+    /*
+       Registration successful
+    */
+
     document
         .getElementById("successModal")
         .classList.add("show");
@@ -1539,7 +1739,9 @@ function submitRegistration(event,type){
 }
 
 
-/* CLOSE SUCCESS */
+/* =========================
+   CLOSE SUCCESS MODAL
+========================= */
 
 function closeSuccess(){
 
@@ -1550,7 +1752,9 @@ function closeSuccess(){
 }
 
 
-/* OUTSIDE CLICK */
+/* =========================
+   OUTSIDE CLICK
+========================= */
 
 document
     .getElementById("successModal")
