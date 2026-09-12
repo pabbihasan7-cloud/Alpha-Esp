@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<titleAlpha Esp</title>
+<title>Alpha Esp</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
@@ -14,6 +14,10 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -29,8 +33,8 @@ body::before{
     inset:0;
     z-index:-5;
     background:
-        radial-gradient(circle at 15% 15%,rgba(255,193,7,.18),transparent 30%),
-        radial-gradient(circle at 85% 80%,rgba(255,145,0,.12),transparent 35%),
+        radial-gradient(circle at 15% 15%,rgba(255,0,0,.13),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(255,0,0,.10),transparent 35%),
         #050505;
 }
 
@@ -38,11 +42,36 @@ body::before{
     position:fixed;
     inset:0;
     z-index:-4;
-    opacity:.35;
+    opacity:.30;
     background-image:
-        linear-gradient(rgba(255,190,40,.04) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,190,40,.04) 1px,transparent 1px);
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
     background-size:45px 45px;
+}
+
+.particle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:#ff3030;
+    border-radius:50%;
+    box-shadow:0 0 12px #ff0000;
+    opacity:.7;
+    z-index:-2;
+    animation:float 9s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(110vh) translateX(0);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    85%{opacity:1;}
+    100%{
+        transform:translateY(-10vh) translateX(100px);
+        opacity:0;
+    }
 }
 
 /* NAVBAR */
@@ -64,27 +93,33 @@ nav{
     font-size:30px;
     font-weight:700;
     letter-spacing:3px;
-    color:#ffd54f;
-    text-shadow:0 0 20px rgba(255,193,7,.6);
+    color:#fff;
+    text-shadow:0 0 15px rgba(255,0,0,.4);
 }
 
 .logo span{
-    color:#fff;
+    color:#ff2020;
 }
 
 .nav-btn{
     text-decoration:none;
-    color:#ffd54f;
-    border:1px solid #b88917;
+    color:#fff;
+    border:1px solid #ff2525;
     padding:9px 18px;
     border-radius:8px;
+    transition:.3s;
+}
+
+.nav-btn:hover{
+    background:#ff2020;
+    box-shadow:0 0 25px rgba(255,0,0,.45);
 }
 
 /* HERO */
 
 .hero{
-    min-height:70vh;
-    padding:120px 7% 50px;
+    min-height:75vh;
+    padding:120px 7% 60px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -93,38 +128,49 @@ nav{
 
 .hero-content{
     max-width:850px;
+    animation:fadeUp 1s ease;
 }
 
 .tag{
     display:inline-block;
     padding:7px 16px;
-    border:1px solid #8d6a18;
+    border:1px solid #ff2424;
     border-radius:50px;
-    color:#ffd54f;
+    color:#ff4b4b;
     font-size:13px;
     letter-spacing:2px;
-    margin-bottom:20px;
+    margin-bottom:22px;
+    animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        box-shadow:0 0 0 rgba(255,0,0,0);
+    }
+    50%{
+        box-shadow:0 0 25px rgba(255,0,0,.25);
+    }
 }
 
 .hero h1{
     font-family:'Rajdhani',sans-serif;
     font-size:clamp(65px,12vw,125px);
     line-height:.82;
-    letter-spacing:5px;
-    margin-bottom:25px;
+    letter-spacing:6px;
+    margin-bottom:28px;
 }
 
 .hero h1 span{
-    color:#ffd54f;
+    color:#ff2525;
     text-shadow:
-        0 0 12px #ffd54f,
-        0 0 45px rgba(255,193,7,.35);
+        0 0 10px rgba(255,0,0,.7),
+        0 0 45px rgba(255,0,0,.25);
 }
 
 .hero p{
     color:#aaa;
-    line-height:1.8;
-    max-width:650px;
+    line-height:1.9;
+    max-width:680px;
     margin:auto;
 }
 
@@ -133,17 +179,23 @@ nav{
     margin-top:30px;
     padding:15px 30px;
     border-radius:9px;
-    background:linear-gradient(135deg,#ffe082,#d69e18);
-    color:#080808;
+    background:#ff2020;
+    color:#fff;
     text-decoration:none;
     font-weight:700;
-    box-shadow:0 0 30px rgba(255,193,7,.25);
+    box-shadow:0 0 30px rgba(255,0,0,.25);
+    transition:.3s;
 }
 
-/* GOLD BOARD */
+.main-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 35px rgba(255,0,0,.45);
+}
+
+/* MATCH SCHEDULE */
 
 .board-section{
-    padding:35px 7% 70px;
+    padding:30px 7% 70px;
 }
 
 .board{
@@ -151,12 +203,22 @@ nav{
     margin:auto;
     padding:35px;
     border-radius:20px;
-    border:1px solid #b88b1c;
+    border:1px solid #8e1717;
     background:
-        linear-gradient(145deg,rgba(255,193,7,.10),rgba(255,255,255,.025));
+        linear-gradient(145deg,rgba(255,0,0,.10),rgba(255,255,255,.025));
     box-shadow:
-        0 0 50px rgba(255,193,7,.10),
-        inset 0 0 35px rgba(255,193,7,.03);
+        0 0 50px rgba(255,0,0,.10),
+        inset 0 0 35px rgba(255,0,0,.03);
+    animation:boardGlow 4s ease-in-out infinite;
+}
+
+@keyframes boardGlow{
+    0%,100%{
+        box-shadow:0 0 35px rgba(255,0,0,.08);
+    }
+    50%{
+        box-shadow:0 0 55px rgba(255,0,0,.20);
+    }
 }
 
 .board-heading{
@@ -165,13 +227,13 @@ nav{
 }
 
 .board-heading small{
-    color:#a88b43;
+    color:#888;
     letter-spacing:3px;
 }
 
 .board-heading h2{
     font-family:'Rajdhani',sans-serif;
-    color:#ffd54f;
+    color:#ff3030;
     font-size:45px;
     margin-top:5px;
 }
@@ -185,40 +247,44 @@ nav{
 .match{
     padding:25px 15px;
     text-align:center;
-    border:1px solid #5d4818;
+    border:1px solid #461717;
     border-radius:14px;
     background:#090909;
-    transition:.3s;
+    transition:.35s;
 }
 
 .match:hover{
-    transform:translateY(-6px);
-    border-color:#ffd54f;
-    box-shadow:0 12px 30px rgba(255,193,7,.15);
+    transform:translateY(-7px) scale(1.02);
+    border-color:#ff2929;
+    box-shadow:0 12px 35px rgba(255,0,0,.18);
 }
 
 .match-number{
-    color:#888;
+    color:#777;
     font-size:13px;
 }
 
 .match-time{
     font-family:'Rajdhani',sans-serif;
-    color:#ffd54f;
+    color:#fff;
     font-size:42px;
     font-weight:700;
     margin:8px 0;
 }
 
+.match-time span{
+    color:#ff2525;
+}
+
 .match-status{
-    color:#aaa;
+    color:#888;
     font-size:13px;
 }
 
 /* MODE */
 
 .mode-section{
-    padding:30px 7% 70px;
+    padding:30px 7% 50px;
     text-align:center;
 }
 
@@ -229,7 +295,7 @@ nav{
 }
 
 .section-title span{
-    color:#ffd54f;
+    color:#ff2828;
 }
 
 .modes{
@@ -241,23 +307,26 @@ nav{
 }
 
 .mode{
-    padding:24px;
-    border:1px solid #554317;
+    padding:25px;
+    border:1px solid #3d1717;
     border-radius:14px;
-    background:#0c0c0c;
+    background:#0b0b0b;
     cursor:pointer;
-    transition:.3s;
+    transition:.35s;
 }
 
 .mode:hover{
-    border-color:#ffd54f;
-    transform:translateY(-4px);
+    transform:translateY(-5px);
+    border-color:#ff2525;
 }
 
 .mode.selected{
-    border-color:#ffd54f;
-    background:rgba(255,193,7,.09);
-    box-shadow:0 0 25px rgba(255,193,7,.18);
+    border-color:#ff2525;
+    background:rgba(255,0,0,.09);
+    box-shadow:
+        0 0 25px rgba(255,0,0,.18),
+        inset 0 0 20px rgba(255,0,0,.04);
+    transform:translateY(-3px);
 }
 
 .mode-icon{
@@ -268,18 +337,79 @@ nav{
 .mode-name{
     font-size:23px;
     font-weight:700;
-    color:#ffd54f;
+    color:#fff;
 }
 
 .mode-desc{
-    color:#888;
+    color:#777;
     font-size:13px;
+}
+
+/* ENTRY FEE */
+
+.fee-section{
+    padding:10px 7% 60px;
+    text-align:center;
+}
+
+.fee-box{
+    max-width:650px;
+    margin:auto;
+    padding:28px;
+    border:1px solid #481818;
+    border-radius:18px;
+    background:rgba(255,255,255,.025);
+}
+
+.fee-box h2{
+    font-family:'Rajdhani',sans-serif;
+    color:#fff;
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.fees{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.fee{
+    padding:18px;
+    border:1px solid #4b1818;
+    border-radius:12px;
+    background:#090909;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.fee:hover{
+    border-color:#ff2525;
+    transform:translateY(-4px);
+}
+
+.fee.selected{
+    border-color:#ff2525;
+    background:#190808;
+    box-shadow:0 0 25px rgba(255,0,0,.20);
+}
+
+.fee-price{
+    color:#ff3030;
+    font-family:'Rajdhani',sans-serif;
+    font-size:34px;
+    font-weight:700;
+}
+
+.fee-text{
+    color:#888;
+    font-size:12px;
 }
 
 /* REGISTRATION */
 
 .registration-section{
-    padding:20px 7% 80px;
+    padding:10px 7% 80px;
     text-align:center;
 }
 
@@ -287,20 +417,24 @@ nav{
     max-width:650px;
     margin:auto;
     padding:35px;
-    border:1px solid #b88b1c;
+    border:1px solid #8b1b1b;
     border-radius:20px;
-    background:rgba(255,255,255,.025);
-    box-shadow:0 0 45px rgba(255,193,7,.08);
+    background:linear-gradient(
+        145deg,
+        rgba(255,0,0,.08),
+        rgba(255,255,255,.025)
+    );
+    box-shadow:0 0 45px rgba(255,0,0,.08);
 }
 
 .registration-box h2{
-    color:#ffd54f;
+    color:#ff3030;
     font-family:'Rajdhani',sans-serif;
     font-size:40px;
 }
 
-.registration-box p{
-    color:#999;
+.registration-box > p{
+    color:#888;
     margin:8px 0 25px;
 }
 
@@ -309,14 +443,14 @@ nav{
 .payment-box{
     text-align:left;
     padding:20px;
-    border:1px solid #604c1b;
+    border:1px solid #471717;
     border-radius:12px;
-    background:rgba(255,193,7,.05);
+    background:rgba(255,0,0,.04);
     margin-bottom:22px;
 }
 
 .payment-box h3{
-    color:#ffd54f;
+    color:#fff;
     margin-bottom:12px;
 }
 
@@ -326,31 +460,37 @@ nav{
     justify-content:space-between;
     gap:10px;
     padding:13px;
-    background:#151515;
+    background:#111;
     border-radius:8px;
 }
 
 .number{
-    color:#ffd54f;
-    font-size:20px;
+    color:#ff3030;
+    font-size:22px;
     font-family:'Rajdhani',sans-serif;
     font-weight:700;
 }
 
 .copy-btn{
     padding:9px 14px;
-    border:1px solid #ffd54f;
+    border:1px solid #ff2525;
     border-radius:7px;
     background:transparent;
-    color:#ffd54f;
+    color:#ff3030;
     cursor:pointer;
     font-weight:700;
+    transition:.3s;
+}
+
+.copy-btn:hover{
+    background:#ff2525;
+    color:#fff;
 }
 
 .payment-message{
-    color:#aaa;
+    color:#999;
     font-size:13px;
-    line-height:1.7;
+    line-height:1.8;
     margin-top:12px;
 }
 
@@ -358,6 +498,19 @@ nav{
 
 .form{
     text-align:left;
+    margin-top:20px;
+    animation:formAppear .5s ease;
+}
+
+@keyframes formAppear{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .form-group{
@@ -375,25 +528,32 @@ nav{
     width:100%;
     padding:14px;
     border-radius:8px;
-    border:1px solid #332b18;
+    border:1px solid #321414;
     outline:none;
-    background:#151515;
+    background:#111;
     color:#fff;
     font-family:inherit;
+    transition:.3s;
 }
 
 .form input:focus{
-    border-color:#ffd54f;
+    border-color:#ff2525;
+    box-shadow:0 0 15px rgba(255,0,0,.12);
 }
 
-.entry-fee{
+.selected-fee{
     padding:14px;
     margin-bottom:15px;
-    border:1px solid #554317;
+    border:1px solid #4c1717;
     border-radius:8px;
-    color:#ffd54f;
-    background:#111;
+    color:#fff;
+    background:#101010;
     font-weight:700;
+}
+
+.selected-fee strong{
+    color:#ff3030;
+    font-size:20px;
 }
 
 .submit-btn{
@@ -401,12 +561,18 @@ nav{
     padding:15px;
     border:0;
     border-radius:9px;
-    background:linear-gradient(135deg,#ffe082,#d69e18);
-    color:#080808;
+    background:#ff2020;
+    color:#fff;
     font-family:inherit;
     font-size:16px;
     font-weight:700;
     cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(255,0,0,.35);
 }
 
 /* PROOF */
@@ -416,42 +582,43 @@ nav{
     margin:0 auto 80px;
     padding:30px;
     text-align:center;
-    border:1px solid #604c1b;
+    border:1px solid #421616;
     border-radius:18px;
-    background:linear-gradient(145deg,rgba(255,193,7,.08),rgba(255,255,255,.02));
+    background:linear-gradient(
+        145deg,
+        rgba(255,0,0,.07),
+        rgba(255,255,255,.02)
+    );
 }
 
 .proof h2{
-    color:#ffd54f;
+    color:#ff3030;
     margin-bottom:12px;
 }
 
 .proof p{
-    color:#aaa;
-    line-height:1.8;
+    color:#999;
+    line-height:1.9;
 }
 
 .whatsapp{
     display:inline-block;
     margin-top:18px;
     padding:13px 25px;
-    border:1px solid #ffd54f;
+    border:1px solid #ff2525;
     border-radius:9px;
-    color:#ffd54f;
+    color:#fff;
     text-decoration:none;
     font-family:'Rajdhani',sans-serif;
     font-size:21px;
     font-weight:700;
+    transition:.3s;
 }
 
-/* FOOTER */
-
-footer{
-    border-top:1px solid #292315;
-    padding:30px 7%;
-    text-align:center;
-    color:#666;
-    font-size:13px;
+.whatsapp:hover{
+    background:#ff2525;
+    box-shadow:0 0 30px rgba(255,0,0,.3);
+    transform:translateY(-3px);
 }
 
 /* SUCCESS MODAL */
@@ -481,10 +648,16 @@ footer{
     max-width:480px;
     padding:35px;
     text-align:center;
-    border:1px solid #c89a24;
+    border:1px solid #ff2525;
     border-radius:18px;
-    background:#0a0a0a;
-    box-shadow:0 0 70px rgba(255,193,7,.18);
+    background:#090909;
+    box-shadow:0 0 70px rgba(255,0,0,.20);
+    transform:translateY(25px) scale(.95);
+    transition:.35s;
+}
+
+.modal.show .modal-box{
+    transform:translateY(0) scale(1);
 }
 
 .success-icon{
@@ -493,8 +666,12 @@ footer{
 }
 
 .modal-box h2{
-    color:#ffd54f;
-    line-height:1.5;
+    color:#fff;
+    line-height:1.6;
+}
+
+.modal-box h2 span{
+    color:#ff3030;
 }
 
 .close-btn{
@@ -502,10 +679,33 @@ footer{
     padding:11px 25px;
     border:0;
     border-radius:8px;
-    background:#ffd54f;
-    color:#080808;
+    background:#ff2525;
+    color:#fff;
     font-weight:700;
     cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid #251212;
+    padding:30px 7%;
+    text-align:center;
+    color:#666;
+    font-size:13px;
+}
+
+/* FADE */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* MOBILE */
@@ -528,6 +728,10 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .fees{
+        grid-template-columns:1fr;
+    }
+
     .registration-box{
         padding:22px;
     }
@@ -536,6 +740,10 @@ footer{
         flex-direction:column;
         align-items:stretch;
         text-align:center;
+    }
+
+    .copy-btn{
+        width:100%;
     }
 
 }
@@ -547,7 +755,7 @@ footer{
     }
 
     .logo{
-        font-size:22px;
+        font-size:21px;
     }
 
     .nav-btn{
@@ -561,7 +769,15 @@ footer{
     }
 
     .hero h1{
-        font-size:60px;
+        font-size:58px;
+    }
+
+    .board-section,
+    .mode-section,
+    .fee-section,
+    .registration-section{
+        padding-left:5%;
+        padding-right:5%;
     }
 
 }
@@ -572,13 +788,22 @@ footer{
 
 <div class="grid"></div>
 
+<!-- PARTICLES -->
+
+<div class="particle" style="left:8%;animation-delay:0s"></div>
+<div class="particle" style="left:20%;animation-delay:2s"></div>
+<div class="particle" style="left:35%;animation-delay:4s"></div>
+<div class="particle" style="left:50%;animation-delay:1s"></div>
+<div class="particle" style="left:65%;animation-delay:5s"></div>
+<div class="particle" style="left:80%;animation-delay:2.5s"></div>
+<div class="particle" style="left:92%;animation-delay:6s"></div>
 
 <!-- NAVBAR -->
 
 <nav>
 
     <div class="logo">
-        SFF<span> TOURNAMENT</span>
+        ALPHA<span> ESP</span>
     </div>
 
     <a href="#schedule" class="nav-btn">
@@ -586,7 +811,6 @@ footer{
     </a>
 
 </nav>
-
 
 <!-- HERO -->
 
@@ -599,8 +823,8 @@ footer{
         </div>
 
         <h1>
-            SFF<br>
-            <span>TOURNAMENT</span>
+            ALPHA<br>
+            <span>ESP</span>
         </h1>
 
         <p>
@@ -608,14 +832,13 @@ footer{
             অংশগ্রহণ করুন এবং Champion হওয়ার লড়াইয়ে নামুন।
         </p>
 
-        <a href="#registration" class="main-btn">
+        <a href="#mode" class="main-btn">
             ⚡ Registration করুন
         </a>
 
     </div>
 
 </section>
-
 
 <!-- MATCH SCHEDULE -->
 
@@ -633,7 +856,6 @@ footer{
 
         </div>
 
-
         <div class="matches">
 
             <div class="match">
@@ -643,7 +865,7 @@ footer{
                 </div>
 
                 <div class="match-time">
-                    8:00 PM
+                    8:00 <span>PM</span>
                 </div>
 
                 <div class="match-status">
@@ -651,7 +873,6 @@ footer{
                 </div>
 
             </div>
-
 
             <div class="match">
 
@@ -660,7 +881,7 @@ footer{
                 </div>
 
                 <div class="match-time">
-                    9:00 PM
+                    9:00 <span>PM</span>
                 </div>
 
                 <div class="match-status">
@@ -669,7 +890,6 @@ footer{
 
             </div>
 
-
             <div class="match">
 
                 <div class="match-number">
@@ -677,7 +897,7 @@ footer{
                 </div>
 
                 <div class="match-time">
-                    10:00 PM
+                    10:00 <span>PM</span>
                 </div>
 
                 <div class="match-status">
@@ -692,22 +912,20 @@ footer{
 
 </section>
 
-
 <!-- MODE -->
 
-<section class="mode-section">
+<section class="mode-section" id="mode">
 
     <h2 class="section-title">
         SELECT <span>MODE</span>
     </h2>
-
 
     <div class="modes">
 
         <div
             class="mode"
             id="soloMode"
-            onclick="openSolo()">
+            onclick="selectMode('solo')">
 
             <div class="mode-icon">
                 👤
@@ -723,11 +941,10 @@ footer{
 
         </div>
 
-
         <div
             class="mode"
             id="squadMode"
-            onclick="openSquad()">
+            onclick="selectMode('squad')">
 
             <div class="mode-icon">
                 👥
@@ -747,6 +964,68 @@ footer{
 
 </section>
 
+<!-- ENTRY FEE -->
+
+<section class="fee-section">
+
+    <div class="fee-box">
+
+        <h2>
+            💰 SELECT ENTRY FEE
+        </h2>
+
+        <div class="fees">
+
+            <div
+                class="fee"
+                id="fee10"
+                onclick="selectFee(10)">
+
+                <div class="fee-price">
+                    10৳
+                </div>
+
+                <div class="fee-text">
+                    Entry Fee
+                </div>
+
+            </div>
+
+            <div
+                class="fee"
+                id="fee20"
+                onclick="selectFee(20)">
+
+                <div class="fee-price">
+                    20৳
+                </div>
+
+                <div class="fee-text">
+                    Entry Fee
+                </div>
+
+            </div>
+
+            <div
+                class="fee"
+                id="fee50"
+                onclick="selectFee(50)">
+
+                <div class="fee-price">
+                    50৳
+                </div>
+
+                <div class="fee-text">
+                    Entry Fee
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <!-- REGISTRATION -->
 
@@ -755,50 +1034,81 @@ footer{
     <div class="registration-box">
 
         <h2>
-            📝 Registration
+            📝 REGISTRATION
         </h2>
 
         <p>
-            প্রথমে Solo অথবা Squad নির্বাচন করুন।
+            Mode এবং Entry Fee নির্বাচন করুন।
         </p>
-
 
         <!-- PAYMENT -->
 
         <div class="payment-box">
 
             <h3>
-                💳 Payment Method
+                💳 Payment Method — bKash
             </h3>
 
             <div class="payment-number">
 
                 <div>
-                    <div style="font-size:12px;color:#888;">
+
+                    <div style="font-size:12px;color:#777;">
                         bKash Number
                     </div>
 
-                    <div class="number" id="bkashNumber">
+                    <div
+                        class="number"
+                        id="bkashNumber">
                         01827010281
                     </div>
+
                 </div>
 
                 <button
                     class="copy-btn"
                     onclick="copyNumber()">
-                    📋 Copy
+                    📋 Copy Number
                 </button>
 
             </div>
 
-
             <div class="payment-message">
+
                 স্লট নিতে উপরের বিকাশ নাম্বার টি কপি করে,
                 আপনার বিকাশ অ্যাপ থেকে এন্ট্রি ফি পাঠিয়ে দিন
+
             </div>
 
         </div>
 
+        <!-- SELECTED MODE -->
+
+        <div
+            id="selectedModeText"
+            style="
+                display:none;
+                text-align:left;
+                padding:12px;
+                margin-bottom:15px;
+                border:1px solid #401515;
+                border-radius:8px;
+                background:#101010;
+                color:#aaa;
+            ">
+        </div>
+
+        <!-- SELECTED FEE -->
+
+        <div
+            id="selectedFeeText"
+            class="selected-fee"
+            style="display:none;">
+
+            Selected Entry Fee:
+            <strong id="feeAmount">10৳</strong>
+
+        </div>
 
         <!-- SOLO FORM -->
 
@@ -816,12 +1126,10 @@ footer{
 
                 <input
                     type="text"
-                    id="playerName"
                     placeholder="Player Name"
                     required>
 
             </div>
-
 
             <div class="form-group">
 
@@ -831,12 +1139,10 @@ footer{
 
                 <input
                     type="tel"
-                    id="soloContact"
                     placeholder="WhatsApp Number"
                     required>
 
             </div>
-
 
             <div class="form-group">
 
@@ -846,24 +1152,20 @@ footer{
 
                 <input
                     type="text"
-                    id="soloTransaction"
                     placeholder="bKash Transaction ID"
                     required>
 
             </div>
 
+            <button
+                class="submit-btn"
+                type="submit">
 
-            <div class="entry-fee">
-                Entry Fee: ৳50
-            </div>
+                🚀 Submit Solo Registration
 
-
-            <button class="submit-btn" type="submit">
-                🚀 Solo Registration Submit
             </button>
 
         </form>
-
 
         <!-- SQUAD FORM -->
 
@@ -881,12 +1183,10 @@ footer{
 
                 <input
                     type="text"
-                    id="squadName"
                     placeholder="Squad Name"
                     required>
 
             </div>
-
 
             <div class="form-group">
 
@@ -896,12 +1196,10 @@ footer{
 
                 <input
                     type="text"
-                    id="leaderName"
                     placeholder="Team Leader Name"
                     required>
 
             </div>
-
 
             <div class="form-group">
 
@@ -911,12 +1209,10 @@ footer{
 
                 <input
                     type="tel"
-                    id="squadContact"
                     placeholder="WhatsApp Number"
                     required>
 
             </div>
-
 
             <div class="form-group">
 
@@ -924,12 +1220,18 @@ footer{
                     4. Entry Fee
                 </label>
 
-                <div class="entry-fee">
-                    ৳50
+                <div
+                    class="selected-fee"
+                    style="margin-bottom:0;">
+
+                    Selected:
+                    <strong id="squadFeeAmount">
+                        10৳
+                    </strong>
+
                 </div>
 
             </div>
-
 
             <div class="form-group">
 
@@ -939,25 +1241,40 @@ footer{
 
                 <input
                     type="text"
-                    id="squadTransaction"
                     placeholder="bKash Transaction ID"
                     required>
 
             </div>
 
+            <button
+                class="submit-btn"
+                type="submit">
 
-            <button class="submit-btn" type="submit">
-                🚀 Squad Registration Submit
+                🚀 Submit Squad Registration
+
             </button>
 
         </form>
+
+        <div
+            id="chooseMessage"
+            style="
+                padding:18px;
+                border:1px dashed #401515;
+                border-radius:10px;
+                color:#777;
+                margin-top:10px;
+            ">
+
+            👆 উপরে Solo অথবা Squad এবং Entry Fee নির্বাচন করুন
+
+        </div>
 
     </div>
 
 </section>
 
-
-<!-- PROOF -->
+<!-- REGISTRATION PROOF -->
 
 <section class="proof">
 
@@ -974,15 +1291,18 @@ footer{
         class="whatsapp"
         href="https://wa.me/8801827010281"
         target="_blank">
+
         WhatsApp: 01827010281
+
     </a>
 
 </section>
 
+<!-- SUCCESS MODAL -->
 
-<!-- SUCCESS -->
-
-<div class="modal" id="successModal">
+<div
+    class="modal"
+    id="successModal">
 
     <div class="modal-box">
 
@@ -997,44 +1317,92 @@ footer{
         <button
             class="close-btn"
             onclick="closeSuccess()">
+
             ঠিক আছে
+
         </button>
 
     </div>
 
 </div>
 
+<!-- FOOTER -->
 
 <footer>
 
-    © 2026 SFF TOURNAMENT • All Rights Reserved
+    © 2026 ALPHA ESP • All Rights Reserved
 
 </footer>
 
-
 <script>
 
-/* =========================
-   MODE SELECTION
-========================= */
+/* VARIABLES */
 
-function openSolo(){
+let selectedMode = "";
+let selectedFee = "";
 
-    document
-        .getElementById("soloMode")
-        .classList.add("selected");
 
-    document
-        .getElementById("squadMode")
-        .classList.remove("selected");
+/* MODE SELECTION */
 
-    document
-        .getElementById("soloForm")
-        .style.display = "block";
+function selectMode(mode){
 
-    document
-        .getElementById("squadForm")
-        .style.display = "none";
+    selectedMode = mode;
+
+    const solo =
+        document.getElementById("soloMode");
+
+    const squad =
+        document.getElementById("squadMode");
+
+    const soloForm =
+        document.getElementById("soloForm");
+
+    const squadForm =
+        document.getElementById("squadForm");
+
+    const modeText =
+        document.getElementById("selectedModeText");
+
+    const chooseMessage =
+        document.getElementById("chooseMessage");
+
+
+    if(mode === "solo"){
+
+        solo.classList.add("selected");
+        squad.classList.remove("selected");
+
+        soloForm.style.display = "block";
+        squadForm.style.display = "none";
+
+        modeText.style.display = "block";
+
+        modeText.innerHTML =
+            "🎮 Selected Mode: <strong style='color:#ff3030;'>SOLO</strong>";
+
+        chooseMessage.style.display = "none";
+
+    }
+
+
+    if(mode === "squad"){
+
+        squad.classList.add("selected");
+        solo.classList.remove("selected");
+
+        squadForm.style.display = "block";
+        soloForm.style.display = "none";
+
+        modeText.style.display = "block";
+
+        modeText.innerHTML =
+            "🎮 Selected Mode: <strong style='color:#ff3030;'>SQUAD</strong>";
+
+        chooseMessage.style.display = "none";
+
+    }
+
+    updateFeeDisplay();
 
     document
         .getElementById("registration")
@@ -1045,23 +1413,26 @@ function openSolo(){
 }
 
 
-function openSquad(){
+/* ENTRY FEE SELECTION */
+
+function selectFee(fee){
+
+    selectedFee = fee;
 
     document
-        .getElementById("squadMode")
+        .querySelectorAll(".fee")
+        .forEach(item=>{
+            item.classList.remove("selected");
+        });
+
+
+    document
+        .getElementById("fee" + fee)
         .classList.add("selected");
 
-    document
-        .getElementById("soloMode")
-        .classList.remove("selected");
 
-    document
-        .getElementById("squadForm")
-        .style.display = "block";
+    updateFeeDisplay();
 
-    document
-        .getElementById("soloForm")
-        .style.display = "none";
 
     document
         .getElementById("registration")
@@ -1072,51 +1443,103 @@ function openSquad(){
 }
 
 
-/* =========================
-   COPY BKASH NUMBER
-========================= */
+/* UPDATE FEE */
+
+function updateFeeDisplay(){
+
+    if(selectedFee === ""){
+        return;
+    }
+
+
+    document
+        .getElementById("selectedFeeText")
+        .style.display = "block";
+
+
+    document
+        .getElementById("feeAmount")
+        .innerText = selectedFee + "৳";
+
+
+    document
+        .getElementById("squadFeeAmount")
+        .innerText = selectedFee + "৳";
+
+}
+
+
+/* COPY BKASH */
 
 function copyNumber(){
 
     const number =
-        document.getElementById("bkashNumber").innerText;
+        document
+        .getElementById("bkashNumber")
+        .innerText;
 
-    navigator.clipboard.writeText(number);
 
-    alert("bKash Number কপি হয়েছে ✅");
+    navigator.clipboard
+        .writeText(number)
+        .then(function(){
+
+            alert(
+                "bKash Number কপি হয়েছে ✅\n" +
+                number
+            );
+
+        })
+        .catch(function(){
+
+            alert(
+                "Number: " + number
+            );
+
+        });
 
 }
 
 
-/* =========================
-   REGISTRATION
-========================= */
+/* SUBMIT */
 
 function submitRegistration(event,type){
 
     event.preventDefault();
 
-    /*
-       এখানে বর্তমানে form submission
-       সফল হলে success message দেখানো হচ্ছে।
 
-       Real payment verification/database
-       পরে server বা official payment gateway
-       দিয়ে যুক্ত করতে হবে।
-    */
+    if(selectedMode === ""){
+
+        alert(
+            "দয়া করে আগে Solo অথবা Squad নির্বাচন করুন।"
+        );
+
+        return;
+
+    }
+
+
+    if(selectedFee === ""){
+
+        alert(
+            "দয়া করে আগে Entry Fee নির্বাচন করুন।"
+        );
+
+        return;
+
+    }
+
 
     document
         .getElementById("successModal")
         .classList.add("show");
+
 
     event.target.reset();
 
 }
 
 
-/* =========================
-   CLOSE SUCCESS
-========================= */
+/* CLOSE SUCCESS */
 
 function closeSuccess(){
 
@@ -1125,6 +1548,24 @@ function closeSuccess(){
         .classList.remove("show");
 
 }
+
+
+/* OUTSIDE CLICK */
+
+document
+    .getElementById("successModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeSuccess();
+
+            }
+
+        }
+    );
 
 </script>
 
